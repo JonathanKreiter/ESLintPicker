@@ -1,0 +1,28 @@
+{
+  "name": "eslintpicker",
+  "version": "0.0.1",
+  "description": "Painless ESLint file importing. Save your ESLint config files all from the command line and be able to import them for any project at any time. Install also includes popular configs, like Airbnb. ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JonathanKreiter/ESLintPicker.git"
+  },
+  "keywords": [
+    "eslint",
+    "lint",
+    "eslintpicker",
+    "lintpicker"
+  ],
+  "author": "Jon Kreiter",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JonathanKreiter/ESLintPicker/issues"
+  },
+  "homepage": "https://github.com/JonathanKreiter/ESLintPicker#readme",
+  "dependencies": {
+    "chalk": "^4.1.0"
+  }
+}
