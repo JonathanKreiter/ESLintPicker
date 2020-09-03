@@ -8,7 +8,11 @@
 
 Install ESLintPicker globally so you have access to it in any project you use.
 
-> npm install eslintpicker -g
+> npm install -g eslintpicker
+
+:collision: **Wait!** Did you say _globally_? :collision:
+
+:sunglasses: **_Yep!_** Normally people shy away from doing this, but for this package to work, you'll want to install it globally so you can access it in any project directory.
 
 ---
 
