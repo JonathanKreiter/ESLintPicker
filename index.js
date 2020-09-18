@@ -52,6 +52,8 @@ const argv = yargs
         },
         function (argv) {
             try {
+                const esLintFileExists = findESLintFile();
+                if (esLintFileExists) {
                 info.log(
                     `Attempting to Save .eslintrc${info.fileFormatColor(
                         findFileFormat(findESLintFile())
@@ -66,6 +68,9 @@ const argv = yargs
                 );
                 info.log('File Saved!');
                 return;
+                } else { 
+                    throw {'code': 'ESLF_DOES_NOT_EXIST'}
+                }
             } catch (exception) {
                 err.catchExceptionOutput(exception.code);
             }
@@ -261,7 +266,8 @@ function findESLintFile() {
 
     const esLintFile = fileInPWD.find(file => file.startsWith('.eslintrc'));
 
-    return esLintFile;
+    if (esLintFile) return esLintFile;
+    return false;
 }
 
 function findFileFormat(file) {
@@ -280,7 +286,7 @@ function findFileFormat(file) {
             return '.js';
         default:
             // FIX - USE ERROR LOGGER HERE (develop error function for proper log out?)
-            err.log(
+            err.logRed(
                 'Error: file type is not correct; must be .json, .yaml, or .js.'
             );
     }
