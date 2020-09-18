@@ -2,11 +2,14 @@
 const yargs = require('yargs');
 const inquirer = require('inquirer');
 const fs = require('fs');
+const fse = require('fs-extra');
 const { COPYFILE_EXCL } = fs.constants;
 const path = require('path');
 const aliasDescriptions = require('./descriptions');
 const { info, err } = require('./utils/loggers');
 const { listUI, listTitleUI } = require('./utils/ui');
+
+ensureESLintFilesDirExists();
 
 const esLintPickerSourceDir = __dirname;
 const esLintFilesDirName = 'esLintFiles';
@@ -479,4 +482,9 @@ function fileFormatConfirm(esLintFileFormat, aliasObject) {
                 return false;
             }
         });
+}
+
+function ensureESLintFilesDirExists() {
+    const esLintFilesPath = path.join(__dirname, 'esLintFiles');
+    fse.ensureDirSync(esLintFilesPath);
 }

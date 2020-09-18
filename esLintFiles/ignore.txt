@@ -1,1 +1,0 @@
-Ignore this file. It only exists to capture an empty dir using git. 
