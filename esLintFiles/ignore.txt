@@ -1,1 +1,1 @@
-txt file required, due to git not tracking empty dirs. This file will be ignored by eslintpicker. Please do not delete.
+Ignore this file. It only exists to capture an empty dir using git. 
