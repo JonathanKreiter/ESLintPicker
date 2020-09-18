@@ -1,11 +1,14 @@
 {
     "name": "eslintpicker",
     "version": "0.0.3",
-    "description": "Painless ESLint file importing. Save your ESLint config files all from the command line and be able to import them for any project at any time. Install also includes popular configs, like Airbnb. STILL UNDER DEVELOPMENT DO NOT USE",
-    "main": "index.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+    "description": "Painless ESLint file importing. Save your ESLint config files all from the command line and be able to import them for any project at any time. Install also includes popular configs, like Airbnb.",
+    "bin": {
+        "eslp": "index.js"
     },
+    "scripts": {
+        "test": "jest --verbose"
+    },
+    "preferGlobal": true,
     "repository": {
         "type": "git",
         "url": "git+https://github.com/JonathanKreiter/ESLintPicker.git"
@@ -23,7 +26,12 @@
     },
     "homepage": "https://github.com/JonathanKreiter/ESLintPicker#readme",
     "dependencies": {
-        "@caporal/core": "^2.0.2",
-        "chalk": "^4.1.0"
+        "chalk": "^4.1.0",
+        "cliui": "^7.0.1",
+        "inquirer": "^7.3.3",
+        "yargs": "^15.4.1"
+    },
+    "devDependencies": {
+        "jest": "^26.4.2"
     }
 }
