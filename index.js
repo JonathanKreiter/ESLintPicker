@@ -325,12 +325,15 @@ function overWriteDescripJSON(
     description,
     descriptionsObject
 ) {
+
     const newJsonObj = JSON.stringify(
         createNewDescriptionObject(alias, description, descriptionsObject),
         null
     );
 
-    fs.writeFileSync('./descriptions.json', newJsonObj, err => {
+    const destPath = path.join(__dirname,'descriptions.json');
+
+    fs.writeFileSync(destPath, newJsonObj, err => {
         // FIX - pass to error logger and return with proper err
         if (err) throw err;
         return;
@@ -341,7 +344,9 @@ function updateDescription(alias, newDescription, descriptionsObject) {
     descriptionsObject[alias] = newDescription; 
     const newJsonObject = JSON.stringify(descriptionsObject); 
 
-    fs.writeFileSync('./descriptions.json', newJsonObject, err => {
+    const destPath = path.join(__dirname,'descriptions.json');
+
+    fs.writeFileSync(destPath, newJsonObject, err => {
         // FIX - pass to error logger and return with proper err
         if (err) throw err;
         return;
@@ -412,8 +417,9 @@ function deleteDescription(alias, descriptionsObject) {
 
     const newJsonObject = JSON.stringify(newDescripObject); 
 
-    fs.writeFileSync('./descriptions.json', newJsonObject, err => {
-        // FIX - pass to error logger and return with proper err
+    const destPath = path.join(__dirname,'descriptions.json');
+
+    fs.writeFileSync(destPath, newJsonObject, err => {
         if (err) throw err;
         return;
     });

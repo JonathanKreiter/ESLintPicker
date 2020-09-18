@@ -31,7 +31,11 @@ const err = {
                 this.logRed('Cannot locate ESLint file in current working directory. Are you sure there is one to save?')
                 break;
             default: 
-                console.log(chalk.redBright(input));
+                if (input === undefined) { 
+                    this.logRed('Error occured, please try again')
+                    return;
+                }
+                this.logRed(input);
         }
 
     }
