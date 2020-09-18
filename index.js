@@ -201,13 +201,12 @@ const argv = yargs
     .alias('help', 'h')
     .alias('version', 'v').argv;
 
-// conditional statements for commands + options
 
 if (argv.list) {
     aliasListOutput(generateAliasList, findFileFormat, aliasDescriptions);
 }
 
-// --LIST functions
+
 function generateAliasList(fileFormatFunc) {
     const aliasNameArray = savedFilesDirArray.map(alias => {
         const fileFormat = fileFormatFunc(alias);
@@ -256,7 +255,7 @@ function aliasListOutput(
     }
 }
 
-// SAVE functions
+
 function findESLintFile() {
     const fileInPWD = fs.readdirSync(process.cwd());
 
@@ -344,7 +343,7 @@ function updateDescription(alias, newDescription, descriptionsObject) {
 
 }
 
-// IMPORT functions
+
 function importFile(alias) {
     const aliasObject = checkForAlias(alias);
 
@@ -369,7 +368,7 @@ function importFile(alias) {
     }
 }
 
-// UPDATE functions
+
 function updateFile(aliasObject) {
     const originFile = findESLintFile();
 
@@ -381,7 +380,7 @@ function updateFile(aliasObject) {
     });
 }
 
-// DELETE function
+
 function deleteFile(aliasObject) {
     const alias = `${aliasObject.name}${aliasObject.fileFormat}`;
     const aliasPath = path.join(__dirname, esLintFilesDirName, alias);
@@ -399,7 +398,7 @@ function descripExists(alias, aliasDescriptions) {
 function deleteDescription(alias, descriptionsObject) {
     const toBeDeletedDescrip = descriptionsObject[alias];
     const newDescripObject = {};
-    for (let alias in descriptionsObject) { 
+    for (const alias in descriptionsObject) { 
         descriptionsObject[alias] != toBeDeletedDescrip 
         ? newDescripObject[alias] = descriptionsObject[alias] 
         : null;
@@ -414,12 +413,8 @@ function deleteDescription(alias, descriptionsObject) {
     });
 
 }
-// Utility functions
-/*
-checkForAlias: for imports and updates and deletes
-compareFileFormats: to compare file formats of .eslintrc.* & alias to trigger update confirmation
-fileFormatConfirm: to confirm a save when file formats differ from eslintrc.* and alias
-*/
+
+
 function checkForAlias(alias) {
     if (alias) {
         const aliasList = generateAliasList(findFileFormat);
