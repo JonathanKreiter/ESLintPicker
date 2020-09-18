@@ -1,6 +1,6 @@
 # ESLintPicker
 
-> Easy to use CLI for saving and importing useful ESLINT templates.
+Easy to use CLI for saving and importing useful ESLINT templates.
 
 ---
 
