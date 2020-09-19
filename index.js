@@ -45,15 +45,15 @@ const argv = yargs
     .usage('eslp <command> <Alias>')
     .usage('eslp --help <command>')
     .usage('eslp [options]')
-    .command({
-        command: 'save', 
-        desc: 'save .eslintrc.js in current working directory under an alias',
-        builder: {
+    .command(
+        'save -a <alias>',
+        'save .eslintrc.js in current working directory under an alias',
+        {
             alias: options.aliasRequired,
             ...options.hidden,
             describe: options.describe,
         },
-        handler: function (argv) {
+        function (argv) {
             try {
                 const esLintFileExists = findESLintFile();
                 if (esLintFileExists) {
@@ -78,42 +78,9 @@ const argv = yargs
                 err.catchExceptionOutput(exception.code);
             }
         }
-    }
-        // 'save',
-        // 'save .eslintrc.js in current working directory under an alias',
-        // {
-        //     alias: options.aliasRequired,
-        //     ...options.hidden,
-        //     describe: options.describe,
-        // },
-        // function (argv) {
-        //     try {
-        //         const esLintFileExists = findESLintFile();
-        //         if (esLintFileExists) {
-        //         info.log(
-        //             `Attempting to Save .eslintrc${info.fileFormatColor(
-        //                 findFileFormat(findESLintFile())
-        //             )} file as ${info.aliasNameColor(argv.alias)}...`
-        //         );
-        //         saveFile(argv, findESLintFile, findFileFormat);
-        //         overWriteDescripJSON(
-        //             createNewDescriptionObject,
-        //             argv.alias,
-        //             argv.describe,
-        //             aliasDescriptions
-        //         );
-        //         info.log('File Saved!');
-        //         return;
-        //         } else { 
-        //             throw {'code': 'ESLF_DOES_NOT_EXIST'}
-        //         }
-        //     } catch (exception) {
-        //         err.catchExceptionOutput(exception.code);
-        //     }
-        // }
     )
     .command(
-        'import',
+        'import -a <alias>',
         'import saved ESLint file',
         {
             alias: options.aliasRequired,
@@ -132,7 +99,7 @@ const argv = yargs
         }
     )
     .command(
-        'update',
+        'update -a <alias>',
         'overwrite saved file with same alias',
         {
             alias: options.aliasRequired,
@@ -189,7 +156,7 @@ const argv = yargs
         }
     )
     .command(
-        'delete',
+        'delete -a <alias>',
         'delete saved file',
         {
             alias: options.aliasRequired,
@@ -220,7 +187,7 @@ const argv = yargs
         }
     )
     .command(
-        'info',
+        'info -a <alias>',
         'alias name, file format, and description',
         {
             alias: options.aliasRequired,

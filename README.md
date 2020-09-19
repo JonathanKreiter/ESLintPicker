@@ -16,15 +16,15 @@ npm install -g eslintpicker
 
 ### Commands:
 
-| Command                 | Action                                                   |
-| ----------------------- | -------------------------------------------------------- |
-| `$ eslp save <alias> `  | save your .eslintrc.js                                   |
-| `$ eslp import <alias>` | import from selection of saved ESLint files              |
-| `$ eslp delete <alias>` | delete from selection of ESLint files                    |
-| `$ eslp update <alias>` | select file form list to update                          |
-| `$ eslp info <alias> `  | Info on specific Alias, File Format, Description of file |
-| `$ eslp --help`         | how-to, cmds, options etc                                |
-| `$ eslp --list`         |
+| Command                    | Action                                                   |
+| -------------------------- | -------------------------------------------------------- |
+| `$ eslp save -a <alias> `  | save your .eslintrc.\*                                   |
+| `$ eslp import -a <alias>` | import from selection of saved ESLint files              |
+| `$ eslp delete -a <alias>` | delete from selection of ESLint files                    |
+| `$ eslp update -a <alias>` | select file form list to update                          |
+| `$ eslp info -a <alias> `  | Info on specific Alias, File Format, Description of file |
+| `$ eslp --help`            | how-to, cmds, options etc                                |
+| `$ eslp --list`            |
 
 ---
 

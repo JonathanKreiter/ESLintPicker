@@ -30,6 +30,9 @@ const err = {
             case 'ESLF_DOES_NOT_EXIST':
                 this.logRed('Cannot locate ESLint file in current working directory. Are you sure there is one to save?')
                 break;
+            case 'ENOENT': 
+                this.logRed('Directory error');
+                break;
             default: 
                 if (input === undefined) { 
                     this.logRed('Error occured, please try again')
