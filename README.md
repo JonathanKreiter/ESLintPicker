@@ -2,7 +2,9 @@
 
 ### :boom: :star: _NOTE: THIS PACKAGE IS STILL UNDER DEVELOPMENT_ :star: :boom:
 
-Easy to use CLI for saving and importing useful ESLint configs.
+---
+
+#####Easy to use CLI for saving and importing useful ESLint configs.
 
 ---
 
@@ -24,7 +26,7 @@ npm install -g eslintpicker
 | `$ eslp update -a <alias>` | select file form list to update                          |
 | `$ eslp info -a <alias> `  | Info on specific Alias, File Format, Description of file |
 | `$ eslp --help`            | how-to, cmds, options etc                                |
-| `$ eslp --list`            |
+| `$ eslp --list`            | print all saved Alias, File Format, and Descriptions     |
 
 ---
 
