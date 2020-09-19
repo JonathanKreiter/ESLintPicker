@@ -47,8 +47,8 @@ const argv = yargs
     .usage('eslp --help <command>')
     .usage('eslp [options]')
     .command(
-        'save -a <alias>',
-        'save .eslintrc.js in current working directory under an alias',
+        'save',
+        'save .eslintrc.* in current working directory under an alias',
         {
             alias: options.aliasRequired,
             ...options.hidden,
@@ -58,22 +58,22 @@ const argv = yargs
             try {
                 const esLintFileExists = findESLintFile();
                 if (esLintFileExists) {
-                info.log(
-                    `Attempting to Save .eslintrc${info.fileFormatColor(
-                        findFileFormat(findESLintFile())
-                    )} file as ${info.aliasNameColor(argv.alias)}...`
-                );
-                saveFile(argv, findESLintFile, findFileFormat);
-                overWriteDescripJSON(
-                    createNewDescriptionObject,
-                    argv.alias,
-                    argv.describe,
-                    aliasDescriptions
-                );
-                info.log('File Saved!');
-                return;
-                } else { 
-                    throw {'code': 'ESLF_DOES_NOT_EXIST'}
+                    info.log(
+                        `Attempting to Save .eslintrc${info.fileFormatColor(
+                            findFileFormat(findESLintFile())
+                        )} file as ${info.aliasNameColor(argv.alias)}...`
+                    );
+                    saveFile(argv, findESLintFile, findFileFormat);
+                    overWriteDescripJSON(
+                        createNewDescriptionObject,
+                        argv.alias,
+                        argv.describe,
+                        aliasDescriptions
+                    );
+                    info.log('File Saved!');
+                    return;
+                } else {
+                    throw { code: 'ESLF_DOES_NOT_EXIST' };
                 }
             } catch (exception) {
                 err.catchExceptionOutput(exception.code);
@@ -81,7 +81,7 @@ const argv = yargs
         }
     )
     .command(
-        'import -a <alias>',
+        'import',
         'import saved ESLint file',
         {
             alias: options.aliasRequired,
@@ -100,16 +100,15 @@ const argv = yargs
         }
     )
     .command(
-        'update -a <alias>',
+        'update',
         'overwrite saved file with same alias',
         {
             alias: options.aliasRequired,
             ...options.hidden,
-            describe: options.describe
+            describe: options.describe,
         },
         argv => {
             try {
-                
                 const aliasObject = checkForAlias(argv.alias);
                 if (aliasObject) {
                     const isFileFormatSame = compareFileFormat(aliasObject);
@@ -125,27 +124,37 @@ const argv = yargs
                             `${info.aliasNameColor(argv.alias)} file updated!`
                         );
 
-                        if (argv.describe && typeof(argv.describe) === 'string') { 
+                        if (
+                            argv.describe &&
+                            typeof argv.describe === 'string'
+                        ) {
                             updateDescription(
-                                aliasObject.name, 
-                                argv.describe, 
+                                aliasObject.name,
+                                argv.describe,
                                 aliasDescriptions
-                                )
-                            info.log(`${info.aliasNameColor(argv.alias)} description has been updated!`)
+                            );
+                            info.log(
+                                `${info.aliasNameColor(
+                                    argv.alias
+                                )} description has been updated!`
+                            );
                         }
                     } else {
                         const originFile = findESLintFile();
                         const esLintFileFormat = findFileFormat(originFile);
                         fileFormatConfirm(esLintFileFormat, aliasObject);
 
-                        if (argv.describe) { 
-
+                        if (argv.describe) {
                             updateDescription(
-                                aliasObject.name, 
-                                argv.describe, 
+                                aliasObject.name,
+                                argv.describe,
                                 aliasDescriptions
-                                )
-                            info.log(`${info.aliasNameColor(argv.alias)} description has been updated!`)
+                            );
+                            info.log(
+                                `${info.aliasNameColor(
+                                    argv.alias
+                                )} description has been updated!`
+                            );
                         }
                     }
                 } else {
@@ -157,7 +166,7 @@ const argv = yargs
         }
     )
     .command(
-        'delete -a <alias>',
+        'delete',
         'delete saved file',
         {
             alias: options.aliasRequired,
@@ -175,8 +184,11 @@ const argv = yargs
                         `${info.aliasNameColor(argv.alias)} file deleted!`
                     );
 
-                    const descriptionExists = descripExists(aliasObject.name, aliasDescriptions); 
-                    if (descriptionExists) { 
+                    const descriptionExists = descripExists(
+                        aliasObject.name,
+                        aliasDescriptions
+                    );
+                    if (descriptionExists) {
                         deleteDescription(aliasObject.name, aliasDescriptions);
                     }
                 } else {
@@ -188,7 +200,7 @@ const argv = yargs
         }
     )
     .command(
-        'info -a <alias>',
+        'info',
         'alias name, file format, and description',
         {
             alias: options.aliasRequired,
@@ -205,16 +217,14 @@ const argv = yargs
     .options({
         list: options.list,
     })
-    .showHelpOnFail('false', 'Use --help to see available options')
     .help()
     .alias('help', 'h')
-    .alias('version', 'v').argv;
-
+    .alias('version', 'v')
+    .argv;
 
 if (argv.list) {
     aliasListOutput(generateAliasList, findFileFormat, aliasDescriptions);
 }
-
 
 function generateAliasList(fileFormatFunc) {
     const aliasNameArray = savedFilesDirArray.map(alias => {
@@ -263,7 +273,6 @@ function aliasListOutput(
         info.log(ui);
     }
 }
-
 
 function findESLintFile() {
     const fileInPWD = fs.readdirSync(process.cwd());
@@ -329,13 +338,12 @@ function overWriteDescripJSON(
     description,
     descriptionsObject
 ) {
-
     const newJsonObj = JSON.stringify(
         createNewDescriptionObject(alias, description, descriptionsObject),
         null
     );
 
-    const destPath = path.join(__dirname,'descriptions.json');
+    const destPath = path.join(__dirname, 'descriptions.json');
 
     fs.writeFileSync(destPath, newJsonObj, err => {
         // FIX - pass to error logger and return with proper err
@@ -344,20 +352,18 @@ function overWriteDescripJSON(
     });
 }
 
-function updateDescription(alias, newDescription, descriptionsObject) { 
-    descriptionsObject[alias] = newDescription; 
-    const newJsonObject = JSON.stringify(descriptionsObject); 
+function updateDescription(alias, newDescription, descriptionsObject) {
+    descriptionsObject[alias] = newDescription;
+    const newJsonObject = JSON.stringify(descriptionsObject);
 
-    const destPath = path.join(__dirname,'descriptions.json');
+    const destPath = path.join(__dirname, 'descriptions.json');
 
     fs.writeFileSync(destPath, newJsonObject, err => {
         // FIX - pass to error logger and return with proper err
         if (err) throw err;
         return;
     });
-
 }
-
 
 function importFile(alias) {
     const aliasObject = checkForAlias(alias);
@@ -383,7 +389,6 @@ function importFile(alias) {
     }
 }
 
-
 function updateFile(aliasObject) {
     const originFile = findESLintFile();
 
@@ -395,7 +400,6 @@ function updateFile(aliasObject) {
     });
 }
 
-
 function deleteFile(aliasObject) {
     const alias = `${aliasObject.name}${aliasObject.fileFormat}`;
     const aliasPath = path.join(__dirname, esLintFilesDirName, alias);
@@ -405,7 +409,7 @@ function deleteFile(aliasObject) {
     });
 }
 
-function descripExists(alias, aliasDescriptions) { 
+function descripExists(alias, aliasDescriptions) {
     if (aliasDescriptions[alias]) return true;
     return false;
 }
@@ -413,23 +417,21 @@ function descripExists(alias, aliasDescriptions) {
 function deleteDescription(alias, descriptionsObject) {
     const toBeDeletedDescrip = descriptionsObject[alias];
     const newDescripObject = {};
-    for (const alias in descriptionsObject) { 
-        descriptionsObject[alias] != toBeDeletedDescrip 
-        ? newDescripObject[alias] = descriptionsObject[alias] 
-        : null;
+    for (const alias in descriptionsObject) {
+        descriptionsObject[alias] != toBeDeletedDescrip
+            ? (newDescripObject[alias] = descriptionsObject[alias])
+            : null;
     }
 
-    const newJsonObject = JSON.stringify(newDescripObject); 
+    const newJsonObject = JSON.stringify(newDescripObject);
 
-    const destPath = path.join(__dirname,'descriptions.json');
+    const destPath = path.join(__dirname, 'descriptions.json');
 
     fs.writeFileSync(destPath, newJsonObject, err => {
         if (err) throw err;
         return;
     });
-
 }
-
 
 function checkForAlias(alias) {
     if (alias) {

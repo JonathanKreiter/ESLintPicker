@@ -31,7 +31,7 @@ const err = {
                 this.logRed('Cannot locate ESLint file in current working directory. Are you sure there is one to save?')
                 break;
             case 'ENOENT': 
-                this.logRed('Directory error');
+                this.logRed('Dir error: cannot located ESLint file...');
                 break;
             default: 
                 if (input === undefined) { 
