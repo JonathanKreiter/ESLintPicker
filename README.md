@@ -1,6 +1,6 @@
 # ESLintPicker
 
-### :boom: :star: _NOTE: THIS PACKAGE IS STILL UNDER DEVELOPMENT_ :star: :boom:
+### :boom: :star: _NOTE: THIS PACKAGE IS STILL UNDER EARLY DEVELOPMENT_ :star: :boom:
 
 ---
 
