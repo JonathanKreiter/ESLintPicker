@@ -4,7 +4,7 @@
 
 ---
 
-#####Easy to use CLI for saving and importing useful ESLint configs.
+Easy to use CLI for saving and importing useful ESLint configs.
 
 ---
 
