@@ -42,6 +42,7 @@ const options = {
 };
 
 const argv = yargs
+    .scriptName('eslp')
     .usage('eslp <command> <Alias>')
     .usage('eslp --help <command>')
     .usage('eslp [options]')
