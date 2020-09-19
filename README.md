@@ -10,20 +10,21 @@ Easy to use CLI for saving and importing useful ESLint configs.
 
 Install ESLintPicker globally so you have access to it in any project you use.
 
-> npm install -g eslintpicker
-
----
+```
+npm install -g eslintpicker
+```
 
 ### Commands:
 
-| Command                | Action                                      |
-| ---------------------- | ------------------------------------------- |
-| \$ eslp save <alias>   | save your .eslintrc.js                      |
-| \$ eslp import <alias> | import from selection of saved ESLint files |
-| \$ eslp delete <alias> | delete from selection of ESLint files       |
-| \$ eslp update <alias> | select file form list to update             |
-| \$ eslp help           | how-to, cmds, options etc                   |
-| \$ eslp info <alias>   | see Alias, File Format, Description of file |
+| Command                 | Action                                                   |
+| ----------------------- | -------------------------------------------------------- |
+| `$ eslp save <alias> `  | save your .eslintrc.js                                   |
+| `$ eslp import <alias>` | import from selection of saved ESLint files              |
+| `$ eslp delete <alias>` | delete from selection of ESLint files                    |
+| `$ eslp update <alias>` | select file form list to update                          |
+| `$ eslp info <alias> `  | Info on specific Alias, File Format, Description of file |
+| `$ eslp --help`         | how-to, cmds, options etc                                |
+| `$ eslp --list`         |
 
 ---
 

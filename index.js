@@ -45,15 +45,15 @@ const argv = yargs
     .usage('eslp <command> <Alias>')
     .usage('eslp --help <command>')
     .usage('eslp [options]')
-    .command(
-        `save`,
-        'save .eslintrc.js in current working directory under an alias',
-        {
+    .command({
+        command: 'save', 
+        desc: 'save .eslintrc.js in current working directory under an alias',
+        builder: {
             alias: options.aliasRequired,
             ...options.hidden,
             describe: options.describe,
         },
-        function (argv) {
+        handler: function (argv) {
             try {
                 const esLintFileExists = findESLintFile();
                 if (esLintFileExists) {
@@ -78,6 +78,39 @@ const argv = yargs
                 err.catchExceptionOutput(exception.code);
             }
         }
+    }
+        // 'save',
+        // 'save .eslintrc.js in current working directory under an alias',
+        // {
+        //     alias: options.aliasRequired,
+        //     ...options.hidden,
+        //     describe: options.describe,
+        // },
+        // function (argv) {
+        //     try {
+        //         const esLintFileExists = findESLintFile();
+        //         if (esLintFileExists) {
+        //         info.log(
+        //             `Attempting to Save .eslintrc${info.fileFormatColor(
+        //                 findFileFormat(findESLintFile())
+        //             )} file as ${info.aliasNameColor(argv.alias)}...`
+        //         );
+        //         saveFile(argv, findESLintFile, findFileFormat);
+        //         overWriteDescripJSON(
+        //             createNewDescriptionObject,
+        //             argv.alias,
+        //             argv.describe,
+        //             aliasDescriptions
+        //         );
+        //         info.log('File Saved!');
+        //         return;
+        //         } else { 
+        //             throw {'code': 'ESLF_DOES_NOT_EXIST'}
+        //         }
+        //     } catch (exception) {
+        //         err.catchExceptionOutput(exception.code);
+        //     }
+        // }
     )
     .command(
         'import',
