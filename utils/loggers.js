@@ -22,7 +22,7 @@ const err = {
     catchExceptionOutput(input) { 
         switch (input) { 
             case 'EEXIST':
-                this.logRed('Alias already exists. Please use another alias or \'eslp update -a <alias>\' to update current file.') 
+                this.logRed('File by that name already exists. If saving, please use another alias or \'eslp update -a <alias>\' to update current file.\nif importing, please double check if a .eslintrc.* already exists.') 
                 break;
             case 'DOES_NOT_EXIST': 
                 this.logRed('Alias does not exist. Please use \'--list\' or \'-l\' to look up current saved aliases.');

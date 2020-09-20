@@ -381,7 +381,7 @@ function importFile(alias) {
         );
 
         fs.copyFileSync(originPath, destPath, COPYFILE_EXCL, err => {
-            if (err) throw err;
+            if (err) throw '.eslintrc.* already exists in your file. Please delete this file in order to import alias.';
             return;
         });
     } else {
