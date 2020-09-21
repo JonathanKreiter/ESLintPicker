@@ -1,6 +1,6 @@
 {
     "name": "eslintpicker",
-    "version": "0.1.293",
+    "version": "0.1.294",
     "description": "Painless ESLint file importing. Save your ESLint config files all from the command line and be able to import them for any project at any time.",
     "bin": {
         "eslp": "index.js"

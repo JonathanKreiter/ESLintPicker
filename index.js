@@ -34,6 +34,10 @@ const options = {
         alias: 'l',
         describe: 'list saved ESLint files',
     },
+    faq: {
+        type: 'boolean', 
+        describe: 'Frequently asked questions how eslintpicker works'
+    },
     hidden: {
         version: { hidden: true },
         list: { hidden: true },
@@ -217,6 +221,9 @@ const argv = yargs
     .options({
         list: options.list,
     })
+    .options({ 
+        faq: options.faq,
+    })
     .help()
     .alias('help', 'h')
     .alias('version', 'v')
@@ -224,6 +231,9 @@ const argv = yargs
 
 if (argv.list) {
     aliasListOutput(generateAliasList, findFileFormat, aliasDescriptions);
+}
+if (argv.faq) {
+    // insert FAQ UI here
 }
 
 function generateAliasList(fileFormatFunc) {
