@@ -2,6 +2,8 @@
 
 ### :boom: :star: _NOTE: THIS PACKAGE IS STILL UNDER EARLY DEVELOPMENT_ :star: :boom:
 
+#### :boom: There are issues with persistent storage of alias files with each update. This bug is currently being worked through. Beware! :boom:
+
 ---
 
 Easy to use CLI for saving and importing useful ESLint configs.
