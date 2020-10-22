@@ -2,8 +2,6 @@
 
 ### :boom: :star: _NOTE: THIS PACKAGE IS STILL UNDER EARLY DEVELOPMENT_ :star: :boom:
 
-#### :boom: There are issues with persistent storage of alias files with each update. This bug is currently being worked through. Beware! :boom:
-
 ---
 
 Easy to use CLI for saving and importing useful ESLint configs.
@@ -22,11 +20,11 @@ npm install -g eslintpicker
 
 | Command                    | Action                                                   |
 | -------------------------- | -------------------------------------------------------- |
-| `$ eslp save -a <alias> `  | save your .eslintrc.\*                                   |
+| `$ eslp save -a <alias>`   | save your .eslintrc.\*                                   |
 | `$ eslp import -a <alias>` | import from selection of saved ESLint files              |
 | `$ eslp delete -a <alias>` | delete from selection of ESLint files                    |
 | `$ eslp update -a <alias>` | select file form list to update                          |
-| `$ eslp info -a <alias> `  | Info on specific Alias, File Format, Description of file |
+| `$ eslp info -a <alias>`   | Info on specific Alias, File Format, Description of file |
 | `$ eslp --help`            | how-to, cmds, options etc                                |
 | `$ eslp --list`            | print all saved Alias, File Format, and Descriptions     |
 
